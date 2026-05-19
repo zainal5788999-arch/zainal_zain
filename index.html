@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexusCash - Sistem Kasir Modern</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo-container">
+                <div class="logo">
+                    <span class="logo-icon">💳</span>
+                    <span class="logo-text">NexusCash</span>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-item active" data-menu="dashboard">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-label">Dashboard</span>
+                </div>
+                <div class="nav-item" data-menu="products">
+                    <span class="nav-icon">📦</span>
+                    <span class="nav-label">Produk</span>
+                </div>
+                <div class="nav-item" data-menu="history">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-label">Riwayat</span>
+                </div>
+                <div class="nav-item" data-menu="settings">
+                    <span class="nav-icon">⚙️</span>
+                    <span class="nav-label">Pengaturan</span>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-avatar">👤</div>
+                    <div class="user-info">
+                        <p class="user-name">Admin</p>
+                        <p class="user-status">Aktif</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Cari produk..." id="searchInput">
+                    <span class="search-icon">🔍</span>
+                </div>
+                <div class="header-actions">
+                    <div class="notification-bell">
+                        <span>🔔</span>
+                        <span class="notification-badge">3</span>
+                    </div>
+                    <div class="time-display" id="timeDisplay">00:00</div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <section id="dashboard" class="content-section active">
+                <div class="content-header">
+                    <h1>Sistem Kasir Modern</h1>
+                    <p class="subtitle">Kelola penjualan dengan mudah dan cepat</p>
+                </div>
+
+                <div class="dashboard-grid">
+                    <!-- Left Section: Products -->
+                    <div class="left-section">
+                        <div class="section-title">
+                            <h2>Produk Tersedia</h2>
+                            <span class="product-count" id="productCount">0</span>
+                        </div>
+
+                        <div class="products-grid" id="productsGrid">
+                            <!-- Products will be inserted here -->
+                        </div>
+                    </div>
+
+                    <!-- Right Section: Cart -->
+                    <div class="right-section">
+                        <div class="cart-container">
+                            <div class="cart-header">
+                                <h2>🛒 Keranjang Belanja</h2>
+                                <button class="clear-btn" id="clearCartBtn">Kosongkan</button>
+                            </div>
+
+                            <div class="cart-items" id="cartItems">
+                                <div class="empty-cart">
+                                    <span class="empty-icon">📭</span>
+                                    <p>Keranjang kosong</p>
+                                </div>
+                            </div>
+
+                            <div class="cart-summary">
+                                <div class="summary-row">
+                                    <span>Subtotal:</span>
+                                    <span class="amount" id="subtotal">Rp 0</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span>Diskon:</span>
+                                    <div class="discount-input-group">
+                                        <input type="number" id="discountInput" placeholder="%" min="0" max="100">
+                                        <span id="discountAmount" class="amount">Rp 0</span>
+                                    </div>
+                                </div>
+                                <div class="summary-row">
+                                    <span>Pajak (10%):</span>
+                                    <span class="amount" id="taxAmount">Rp 0</span>
+                                </div>
+                                <div class="summary-divider"></div>
+                                <div class="summary-row total">
+                                    <span>Total Pembayaran:</span>
+                                    <span class="amount" id="totalAmount">Rp 0</span>
+                                </div>
+                            </div>
+
+                            <div class="payment-method">
+                                <label>Metode Pembayaran:</label>
+                                <div class="payment-options">
+                                    <button class="payment-btn active" data-method="cash">💵 Tunai</button>
+                                    <button class="payment-btn" data-method="card">💳 Kartu</button>
+                                    <button class="payment-btn" data-method="digital">📱 Digital</button>
+                                </div>
+                            </div>
+
+                            <div class="payment-input-group">
+                                <label>Jumlah Pembayaran:</label>
+                                <input type="number" id="paymentAmount" placeholder="Masukkan jumlah pembayaran" min="0">
+                            </div>
+
+                            <div class="change-display" id="changeDisplay">
+                                <p class="change-label">Kembalian:</p>
+                                <p class="change-amount">Rp 0</p>
+                            </div>
+
+                            <button class="checkout-btn" id="checkoutBtn">PROSES PEMBAYARAN</button>
+                            <button class="print-btn" id="printBtn">🖨️ Cetak Struk</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Products Section -->
+            <section id="products" class="content-section">
+                <div class="content-header">
+                    <h1>Manajemen Produk</h1>
+                    <button class="add-product-btn" id="addProductBtn">+ Tambah Produk</button>
+                </div>
+                <div class="products-table-container">
+                    <table class="products-table" id="productsTable">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama Produk</th>
+                                <th>Harga</th>
+                                <th>Stok</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productsTableBody">
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- History Section -->
+            <section id="history" class="content-section">
+                <div class="content-header">
+                    <h1>Riwayat Transaksi</h1>
+                </div>
+                <div class="history-container" id="historyContainer">
+                    <div class="empty-state">
+                        <span class="empty-icon">📋</span>
+                        <p>Belum ada transaksi</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settings" class="content-section">
+                <div class="content-header">
+                    <h1>Pengaturan</h1>
+                </div>
+                <div class="settings-container">
+                    <div class="settings-card">
+                        <h3>Pengaturan Umum</h3>
+                        <div class="setting-item">
+                            <label>Nama Toko:</label>
+                            <input type="text" id="storeName" value="NexusCash Store">
+                        </div>
+                        <div class="setting-item">
+                            <label>Alamat:</label>
+                            <textarea id="storeAddress">Jl. Modern No. 123</textarea>
+                        </div>
+                        <div class="setting-item">
+                            <label>Nomor Telepon:</label>
+                            <input type="text" id="storePhone" value="0812-3456-7890">
+                        </div>
+                        <button class="save-settings-btn" id="saveSettingsBtn">Simpan Pengaturan</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal untuk Checkout -->
+    <div class="modal" id="checkoutModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Konfirmasi Pembayaran</h2>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="receipt-preview" id="receiptPreview">
+                    <!-- Receipt will be generated here -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="cancelBtn">Batal</button>
+                <button class="btn-primary" id="confirmBtn">Konfirmasi</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
